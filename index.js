@@ -17,6 +17,7 @@ async function run (){
         await client.connect();
         const database = client.db('hunter-watch');
         const userCollection =  database.collection('user');
+        const orderCollection =  database.collection('order');
         const productsCollection = database.collection('products')
         
         app.get('/', (req, res)=>{
@@ -28,12 +29,31 @@ async function run (){
             const products = await cursor.toArray()
             res.json(products)
         })
-        // app.get('/products', async (req,res)=>{
-        //     const cursor = productsCollection.find({});
-        //     const products = await cursor.toArray()
-        //     res.send(products) 
+        //add user
+        app.post('/user', async (req, res)=>{
+            const user = req.body;
+            const result = await userCollection.insertOne(user)
+            res.json(result)
+        })
+        //load user
+        app.get('/user', async (req, res)=>{
+            const cursor = userCollection.find({});
+            const users = await cursor.toArray()
+            res.json(users)
+        })
 
-        // })
+        //add order
+        app.post('/order', async (req, res)=>{
+            const order = req.body;
+            const result = await orderCollection.insertOne(order)
+            res.json(result)
+        })
+    
+        //  app.post('/trips' , async (req,res)=>{
+    //     const data = req.body;
+    //     const result = await tripsCollection.insertOne(data)
+    //     res.json(result)
+    //  })
     //     //Cancel trip
     //     app.delete('/bookedTri/:id', async (req, res)=>{
     //         const id = req.params.id;
@@ -42,11 +62,7 @@ async function run (){
     //         res.json(result)
     //     })
     //  //add trip
-    //  app.post('/trips' , async (req,res)=>{
-    //     const data = req.body;
-    //     const result = await tripsCollection.insertOne(data)
-    //     res.json(result)
-    //  })
+    
     //     //get api for bookedtrip
     //     app.get('/bookedTrip', async (req,res)=>{
     //         const cursor = orderCollection.find({});
