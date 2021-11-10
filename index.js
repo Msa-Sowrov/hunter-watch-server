@@ -22,7 +22,7 @@ async function run (){
         const reviewCollection = database.collection('review')
         
         app.get('/', (req, res)=>{
-            res.send('Runing hunter watch server')
+            res.send('Runing hunter watch server....')
         })
         
         app.get('/products', async (req,res)=>{
@@ -117,55 +117,7 @@ async function run (){
             res.json(order)
         })
     
-        //  app.post('/trips' , async (req,res)=>{
-    //     const data = req.body;
-    //     const result = await tripsCollection.insertOne(data)
-    //     res.json(result)
-    //  })
-    //     //Cancel trip
-    //     app.delete('/bookedTri/:id', async (req, res)=>{
-    //         const id = req.params.id;
-    //         const _id = id;
-    //         const result = await orderCollection.deleteOne({_id:_id})
-    //         res.json(result)
-    //     })
-    //  //add trip
-    
-    //     //get api for bookedtrip
-    //     app.get('/bookedTrip', async (req,res)=>{
-    //         const cursor = orderCollection.find({});
-    //         const bookedTrips = await cursor.toArray()
-    //         res.json(bookedTrips)
-    //     })
-    //     //post api to saved booked trip
-    //     app.post('/booked', async(req, res)=>{
-    //         const data = req.body;
-    //         const result = await orderCollection.insertOne(data)
-    //         res.json(result)
-    //     } )
-
-    //       //update api
-    //   app.put('/bookedTrip:id', async (req, res)=>{
-    //     const id = req.params.id;
-    //     const updated = req.body;
-    //     const _id = id
-    //     const filter = {_id:_id}
-    //     const options = { upsert: true };
-    //     const updateDoc = {
-    //       $set: {
-    //         name:updated.name,
-    //         img:updated.img,
-    //         email:updated.email,
-    //         return:updated.return,
-    //         desf:updated.desf,
-    //         status:updated.status
-    //       },  
-    //     };
-
-    //     const result = await orderCollection.updateOne(filter, updateDoc, options);
-    //     res.json(result)
-    // })
-
+      
         
        
     }
